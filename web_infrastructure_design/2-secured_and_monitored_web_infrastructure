@@ -1,0 +1,53 @@
+                              USERS
+                                |
+                                | HTTPS
+                                | 🔒
+                                v
+                         +--------------+
+                         |   FIREWALL   |
+                         |      #1      |
+                         +------+-------+
+                                |
+                                v
+                         +--------------+
+                         |    HAProxy   |
+                         | Load Balancer|
+                         |              |
+                         | SSL/TLS      |
+                         | termination  |
+                         +------+-------+
+                                |
+                    +-----------+-----------+
+                    |                       |
+                    | HTTP/HTTPS            |
+                    |                       |
+                    v                       v
+             +------------+         +------------+
+             | FIREWALL #2|         | FIREWALL #3|
+             +-----+------+         +------+-----+
+                   |                       |
+                   v                       v
+          +----------------+      +----------------+
+          |    SERVER 1    |      |    SERVER 2    |
+          |                |      |                |
+          | Nginx          |      | Nginx          |
+          | App Server     |      | App Server     |
+          | App Files      |      | App Files      |
+          | MySQL          |      | MySQL          |
+          |                |      |                |
+          | Monitoring     |      | Monitoring     |
+          | Client #1      |      | Client #2      |
+          +----------------+      +----------------+
+                   \                       /
+                    \                     /
+                     \                   /
+                      \                 /
+                       +---------------+
+                               |
+                         +------------+
+                         |  SERVER 3  |
+                         |            |
+                         | MySQL      |
+                         | Monitoring |
+                         | Client #3  |
+                         +------------+
