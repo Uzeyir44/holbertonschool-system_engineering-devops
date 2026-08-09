@@ -1,0 +1,71 @@
+                         USER
+                           |
+                           | 1. Types www.foobar.com
+                           v
+                    +-------------+
+                    |     DNS     |
+                    | foobar.com  |
+                    |             |
+                    | www -> A    |
+                    | 8.8.8.8     |
+                    +------+------+
+                           |
+                           | 2. HTTP/HTTPS
+                           |    TCP/IP
+                           v
+              +--------------------------------+
+              |          ONE SERVER             |
+              |          8.8.8.8                |
+              |                                |
+              |  +--------------------------+  |
+              |  |          NGINX            |  |
+              |  |       Web Server          |  |
+              |  +------------+-------------+  |
+              |               |                |
+              |               | 3. Request     |
+              |               v                |
+              |  +--------------------------+  |
+              |  |    APPLICATION SERVER    |  |
+              |  +------------+-------------+  |
+              |               |                |
+              |               v                |
+              |  +--------------------------+  |
+              |  |    APPLICATION FILES     |  |
+              |  |       (your code)        |  |
+              |  +------------+-------------+  |
+              |               |                |
+              |               | 4. SQL         |
+              |               v                |
+              |  +--------------------------+  |
+              |  |          MySQL            |  |
+              |  |         Database          |  |
+              |  +--------------------------+  |
+              |                                |
+              +--------------------------------+
+                           |
+                           | 5. HTTP Response
+                           v
+                         USER
+
+
+┌──────────────────────────┐
+│ SPOF                     │
+│ One server contains      │
+│ everything. If it fails, │
+│ the entire website fails.│
+└──────────────────────────┘
+
+┌──────────────────────────┐
+│ DOWNTIME                 │
+│ Maintenance or deployment│
+│ may require restarting   │
+│ services/server.         │
+└──────────────────────────┘
+
+┌──────────────────────────┐
+│ NO SCALING               │
+│ One server has limited   │
+│ CPU/RAM/network capacity │
+│ and cannot handle huge   │
+│ traffic increases.       │
+└──────────────────────────┘
