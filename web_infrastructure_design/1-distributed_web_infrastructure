@@ -1,0 +1,32 @@
+                         USER
+                           |
+                           | HTTPS / HTTP
+                           v
+                 +-------------------+
+                 |    HAProxy        |
+                 |   LOAD BALANCER   |
+                 |  Round Robin      |
+                 +---------+---------+
+                           |
+                    distributes traffic
+                     /             \
+                    /               \
+                   v                 v
+        +------------------+   +------------------+
+        |    SERVER 1      |   |    SERVER 2      |
+        |                  |   |                  |
+        | Nginx            |   | Nginx            |
+        | Web Server       |   | Web Server       |
+        |                  |   |                  |
+        | Application      |   | Application      |
+        | Server           |   | Server           |
+        |                  |   |                  |
+        | Application      |   | Application      |
+        | Files            |   | Files            |
+        |                  |   |                  |
+        | MySQL PRIMARY    |<--| MySQL REPLICA    |
+        |                  | replication          |
+        +------------------+   +------------------+
+                 ^                       |
+                 |                       |
+                 +-----------------------+
